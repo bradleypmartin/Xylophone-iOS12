@@ -12,12 +12,14 @@ import AVFoundation
 
 class ViewController: UIViewController{
     
+    // global (class) vars
     var audioPlayer: AVAudioPlayer?
     
+    // boilerplate iOS
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-
+    
     @IBAction func notePressed(_ sender: UIButton) {
         playSound(noteIndex: sender.tag)
     }
