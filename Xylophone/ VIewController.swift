@@ -7,10 +7,12 @@
 //
 
 import UIKit
+import AVFoundation
 
 class ViewController: UIViewController{
     
-
+    var audioPlayer: AVAudioPlayer?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -20,6 +22,17 @@ class ViewController: UIViewController{
     @IBAction func notePressed(_ sender: UIButton) {
         
         print(sender.tag)
+        
+        do {
+            if let fileURL = Bundle.main.path(forResource: "note1", ofType: "wav") {
+                audioPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: fileURL))
+                audioPlayer?.play()
+            } else {
+                print("No file with specified name exists")
+            }
+        } catch let error {
+            print("Can't play the audio file failed with an error \(error.localizedDescription)")
+        }
         
     }
     
