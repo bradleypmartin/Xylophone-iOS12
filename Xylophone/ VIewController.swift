@@ -3,6 +3,7 @@
 //  Xylophone
 //
 //  Created by Angela Yu on 27/01/2016.
+//  Updated by Brad Martin on 09/02/2019.
 //  Copyright © 2016 London App Brewery. All rights reserved.
 //
 
@@ -17,16 +18,19 @@ class ViewController: UIViewController{
         super.viewDidLoad()
     }
 
-
-
     @IBAction func notePressed(_ sender: UIButton) {
+        playSound(noteIndex: sender.tag)
+    }
+
+    func playSound(noteIndex: Int) {
         
-        print(sender.tag)
+        let sfName = "note" + String(noteIndex)
         
         do {
-            if let fileURL = Bundle.main.path(forResource: "note1", ofType: "wav") {
+            if let fileURL = Bundle.main.path(forResource: sfName, ofType: "wav") {
                 audioPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: fileURL))
                 audioPlayer?.play()
+                print("Audio file trying to play: \(sfName)")
             } else {
                 print("No file with specified name exists")
             }
@@ -36,7 +40,5 @@ class ViewController: UIViewController{
         
     }
     
-  
-
 }
 
